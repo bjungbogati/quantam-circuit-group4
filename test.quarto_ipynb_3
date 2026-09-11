@@ -1,0 +1,51 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Qiskit in Quarto\"\n",
+        "format: html\n",
+        "jupyter: python3\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Qisket"
+      ],
+      "id": "7f4c0eef"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from qiskit import QuantumCircuit, QuantumRegister\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "qubits = QuantumRegister(2, name=\"q\")\n",
+        "circuit = QuantumCircuit(qubits)\n",
+        "\n",
+        "q0, q1 = qubits\n",
+        "circuit.h(q0)\n",
+        "circuit.cx(q0, q1)\n",
+        "circuit.measure_all()\n",
+        "\n",
+        "# Evaluate the figure as the final statement without plt.show()\n",
+        "circuit.draw(\"mpl\")"
+      ],
+      "id": "7b1b3033",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/bjungbogati/Documents/AAU/quantam-circuit-group4/.venv/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

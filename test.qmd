@@ -1,0 +1,26 @@
+---
+title: "Qiskit in Quarto"
+format: html
+jupyter: python3
+---
+
+
+# Qisket
+
+```{python}
+from qiskit import QuantumCircuit, QuantumRegister
+import matplotlib.pyplot as plt
+
+qubits = QuantumRegister(2, name="q")
+circuit = QuantumCircuit(qubits)
+
+q0, q1 = qubits
+circuit.h(q0)
+circuit.cx(q0, q1)
+circuit.measure_all()
+
+# Evaluate the figure as the final statement without plt.show()
+circuit.draw("mpl")
+```
+
+

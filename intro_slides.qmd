@@ -1,0 +1,199 @@
+---
+title: "Finding Hidden Structure in Quantum Circuits To Make Them Cheaper"
+subtitle: "Group 4"
+format:
+  ubd-revealjs:
+    self-contained: false
+    transition: fade
+    auto-stretch: false
+    width: 1250
+    height: 760
+    chalkboard: true
+    toc: false
+    toc-depth: 1
+    code-block-height: 700px
+    slide-number: false
+    css: customstyle.css
+    title-slide-attributes:
+      data-background-image: "bg.jpg"
+      data-background-size: cover
+      data-background-position: center
+      data-background-opacity: "0.1"
+    webcam:
+      toggleKey: "c"
+      enabled: false
+      persistent: false
+revealjs-plugins:
+  - webcam
+date: last-modified
+execute:
+  freeze: auto
+  echo: false
+editor:
+  markdown:
+    wrap: sentence
+---
+
+## Who We Are {background-image="bg.jpg" background-size="cover" background-opacity="0.05" background-color="#EAF3FF"}
+
+**Team:**
+
+- Binod Jung Bogati
+
+- Mahendra Rimal
+
+- Milan Gurung
+
+- Abishek Basnet
+
+- Md Symun Noor
+
+**Supervisor:** Benjamin Clausen Bennetzen
+
+**Date:** Sept 11, 2026
+
+::: notes
+This is a Day 1 introduction - keep it light and inviting.
+Say: "No prior quantum knowledge is needed today - we'll build everything up from scratch, and this is just a first look, not the full project." Introduce the team briefly, thank the supervisor by name once.
+:::
+
+------------------------------------------------------------------------
+
+## Why This Project Matters {background-color="#FFF4E6"}
+
+<br>
+
+- Today's quantum computers only have a **few qubits** to work with
+- Every instruction (**gate**) has a chance of introducing an **error**
+- Qubits that aren't next to each other need **extra gates** just to talk to each other
+- **Shorter programs = more trustworthy results**
+- Our project looks for gates that **don't need to be there**
+
+::: notes
+This is the "so what" slide - keep it plain and quick, this is meant to hook interest, not explain everything.
+Avoid heavy jargon here, save definitions for the next slide.
+:::
+
+------------------------------------------------------------------------
+
+## What is a Quantum Circuit? {background-color="#F7F9FC"}
+
+A quantum program is usually written as a circuit.
+
+- **Qubits** = wires (like bits, but quantum)
+- **Gates** = instructions applied left to right
+- A qubit can be **0**, **1**, or **both at once**
+
+![](matplotlib%201.png){width="45%"}
+
+::: notes
+This image is a generic example just to explain circuit notation - point out it is NOT the circuit your project studies (that comes next).
+Explain briefly: "q" = qubits, "H" = puts a qubit into superposition, dot-and-cross = CNOT gate, "M" = measurement.
+Keep this under a minute - it's background, not the main event.
+:::
+
+<!-- ## A Worked Example {background-color="#F7F9FC"} -->
+
+<!-- - Two "real" qubits (**q1**, **q2**) and one helper wire, called an **ancilla** -->
+
+<!-- - **Step 1:** write a shared property of q1 and q2 into the ancilla -->
+
+<!-- - **Step 2:** use that property to do something useful -->
+
+<!-- - **Step 3:** erase the ancilla again, undoing step 1, so it's clean -->
+
+<!-- > Note for presenters: redraw this slide's diagram from your **original circuit -->
+
+<!-- > figure**, not from memory - the text source we worked from was garbled, so don't -->
+
+<!-- > guess the exact wiring live. -->
+
+<!-- ::: {.notes} -->
+
+<!-- Keep this conceptual for Day 1 - "write, use, undo" is the takeaway, not the exact -->
+
+<!-- gate-by-gate wiring. Use the scratchpad analogy: an ancilla is like a temporary -->
+
+<!-- variable you clear before a function returns. Save the full gate-by-gate walkthrough -->
+
+<!-- for a later, more technical presentation. -->
+
+<!-- ::: -->
+
+<!-- --- -->
+
+<!-- ## The Pattern We Study {background-color="#FFF4E6"} -->
+
+<!-- ### Compute → Act → Uncompute -->
+
+<!-- - **Compute** a helper value -->
+
+<!-- - **Act** using that value -->
+
+<!-- - **Uncompute** it again, to clean up -->
+
+<!-- - Written as: **`U ; A ; U†`** -->
+
+<!-- - This shape shows up **constantly** in quantum programs -->
+
+<!-- - Our question: **can we avoid redoing all of it every time?** -->
+
+<!-- ::: {.notes} -->
+
+<!-- Tie this directly back to the worked example: "this is exactly what we just saw - -->
+
+<!-- write, use, undo." Keep this short - the punchline question is what should land, -->
+
+<!-- not a full technical justification. -->
+
+<!-- ::: -->
+
+<!-- --- -->
+
+## Why This Is Worth Optimizing {background-color="#FFE9E9"}
+
+<br>
+
+- Quantum programs are often made **"controlled"** — only run if an extra qubit is 1
+- Naive approach: control **every single gate** in the program (expensive!)
+- **Our idea:** if part of a circuit **undoes** an earlier part, we may only need to control the **middle piece**
+- This hidden pattern is exactly what we're hunting for
+
+::: notes
+Keep this as a teaser, not the full deep-dive comparison - just enough to show there's a real payoff worth chasing.
+A fuller version with concrete gate counts is a good topic for a follow-up presentation once we have results.
+:::
+
+------------------------------------------------------------------------
+
+## Our Project Aim {background-color="#EAF3FF"}
+
+<br>
+
+- Build a tool that **automatically finds** this hidden pattern in a circuit
+- Use it to build **cheaper controlled versions** of that circuit
+- Start with the **simplest case** first, and build up from there
+- Using **existing quantum tools**, not starting from scratch
+
+::: notes
+Keep this brief and forward-looking - the goal today is to make people curious about where this goes, not to lay out the full roadmap.
+Save the staged plan (literal-inverse matching, commuting gates, ZX-calculus) for a progress update.
+:::
+
+------------------------------------------------------------------------
+
+## Thank You & Questions {background-color="#E6F7EF"}
+
+<br>
+
+**Team:** Abishek Basnet · Binod Jung Bogati · Mahendra Rimal · Milan Gurung · Md Symun Noor
+
+**Supervisor:** Benjamin Clausen Bennetzen
+
+<br>
+
+### Questions?
+
+::: notes
+Open Q&A. If unsure of an answer: "Great question - we haven't explored that yet, but it's on our list for the next phase." It's fine to say this is early-stage.
+:::
